@@ -1,8 +1,0 @@
-{
-  "name": "thanishka-beauty-parlour",
-  "version": "1.0.0",
-  "private": true,
-  "description": "Premium website for Thanishka Beauty Parlour, Warangal",
-  "scripts": {"start": "node server.js"},
-  "engines": {"node": ">=18"}
-}

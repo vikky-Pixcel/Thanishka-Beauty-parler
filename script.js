@@ -23,27 +23,6 @@ $$('.gallery-item').forEach(btn=>btn.addEventListener('click',()=>{lightboxImg.s
 $('#lightbox button').addEventListener('click',()=>lightbox.classList.remove('open'));
 lightbox.addEventListener('click',e=>{if(e.target===lightbox)lightbox.classList.remove('open')});
 
-function stars(rating){const n=Math.round(rating||5);return '★★★★★'.split('').map((s,i)=>i<n?'★':'☆').join('');}
-function renderReviews(payload){
-  const summary=$('#reviewSummary'), count=$('#reviewCount'), grid=$('#reviewsGrid');
-  if(!payload?.ok){
-    summary.textContent='Google reviews'; count.textContent='Live rating requires API setup';
-    grid.innerHTML='<div class="google-empty"><div class="review-stars">★★★★★</div><h3>See genuine client feedback on Google</h3><p>Connect the Google Places API in the included server configuration to display genuine Google reviews here. Until then, this site will never invent testimonials.</p><a class="btn btn-purple" target="_blank" rel="noopener" href="https://maps.app.goo.gl/r66FTnZVNExc36T67">View original Google listing ↗</a></div>';
-    return;
-  }
-  const p=payload.place||{};
-  summary.textContent = p.rating ? `${p.rating.toFixed(1)} / 5 on Google` : 'Google reviews';
-  count.textContent = p.userRatingCount ? `${p.userRatingCount.toLocaleString()} ratings` : 'Live rating';
-  $('#heroRating').textContent = p.rating ? `${p.rating.toFixed(1)}★` : 'Highly rated';
-  $('#trustRating').textContent = p.rating ? `${p.rating.toFixed(1)}★ • ${p.userRatingCount.toLocaleString()} ratings` : 'Highly rated';
-  if(!payload.reviews?.length){grid.innerHTML='<div class="google-empty"><h3>Google reviews are connected</h3><p>No review text was returned by the current API response. Open Google to see the original reviews.</p></div>';return;}
-  grid.innerHTML=payload.reviews.map(r=>`<article class="review-card"><div class="review-stars">${stars(r.rating)}</div><p>“${escapeHtml(r.text)}”</p><div class="review-author"><span class="review-avatar">${escapeHtml((r.author||'G').slice(0,1).toUpperCase())}</span><span><b>${escapeHtml(r.author||'Google reviewer')}</b><br>${escapeHtml(r.relativeTime||'Google review')}</span></div></article>`).join('');
-}
-function escapeHtml(s){return String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
-
-// Google Reviews fetch disabled – reviews are now displayed as static, verified client feedback.
-// fetch('/api/google-reviews').then(r=>r.json()).then(renderReviews).catch(()=>renderReviews(null));
-
 const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxEGE7QFFGgdsVTfVkIZ_wS4j4WHwsBw0jh7T7eoc6Fz7SA5wbA0hvtoJY4CSh1vcA9/exec';
 
 $('#bookingForm').addEventListener('submit', async e => {
