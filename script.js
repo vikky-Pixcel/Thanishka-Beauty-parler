@@ -1,3 +1,8 @@
+document.querySelectorAll('img[src^="/assets/"], [data-img^="/assets/"]').forEach(element => {
+  const attribute = element.hasAttribute('src') ? 'src' : 'data-img';
+  element.setAttribute(attribute, element.getAttribute(attribute).replace('/assets/', '/'));
+});
+
 const $ = (s, r=document) => r.querySelector(s);
 const $$ = (s, r=document) => [...r.querySelectorAll(s)];
 
