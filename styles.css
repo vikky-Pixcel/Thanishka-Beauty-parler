@@ -183,3 +183,7 @@
   font-size: 14px;
   flex-shrink: 0;
 }
+
+/* Vercel serves the deployed image files from the project root. */
+.hero:before { background-image: url('/brand-poster.webp'); }
+.bridal-pattern { background-image: url('/brand-poster.webp'); }

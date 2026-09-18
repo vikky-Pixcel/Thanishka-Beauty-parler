@@ -150,6 +150,12 @@
 
   <div class="mobile-bar"><a href="tel:+919395346411">Call</a><a href="#book">Book</a><a target="_blank" rel="noopener" href="https://wa.me/919395346411">WhatsApp</a></div>
   <div class="lightbox" id="lightbox"><button aria-label="Close">×</button><img id="lightboxImg" alt="Expanded gallery image"></div>
+  <script>
+    document.querySelectorAll('img[src^="/assets/"], [data-img^="/assets/"]').forEach(element => {
+      const attribute = element.hasAttribute('src') ? 'src' : 'data-img';
+      element.setAttribute(attribute, element.getAttribute(attribute).replace('/assets/', '/'));
+    });
+  </script>
   <script src="/script.js"></script>
 </body>
 </html>
