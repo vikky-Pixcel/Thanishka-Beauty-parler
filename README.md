@@ -9,7 +9,7 @@ Upload the contents of this folder to any static host. The required files are:
 - `index.html`
 - `styles.css`
 - `script.js`
-- `assets/`
+- The image files in the project root
 
 This works with GitHub Pages, Netlify, Vercel, Cloudflare Pages, or ordinary web hosting. No build command, database, Node.js, or package installation is required.
 
